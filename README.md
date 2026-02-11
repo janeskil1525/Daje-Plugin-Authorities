@@ -26,19 +26,19 @@ Daje::Plugin::Authorities is a Mojolicious plugin.
 Daje::Plugin::Authorities inherits all methods from
 Mojolicious::Plugin and implements the following new ones.
 
-# Mojolicious::Lite
-
-     plugin 'Authorities';
-
-# Mojolicious
-
-     $self->plugin('Authorities');
-
 # register
 
     $plugin->register(Mojolicious->new);
 
 Register plugin in [Mojolicious](https://metacpan.org/pod/Mojolicious) application.
+
+# Mojolicious
+
+     $self->plugin('Authorities');
+
+# Mojolicious::Lite
+
+     plugin 'Authorities';
 
 # SEE ALSO
 
