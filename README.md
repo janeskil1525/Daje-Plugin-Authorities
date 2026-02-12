@@ -13,6 +13,8 @@ Daje::Plugin::Authorities is a Mojolicious plugin.
 
 [Daje::Database::Migrator](https://metacpan.org/pod/Daje%3A%3ADatabase%3A%3AMigrator) 
 
+[Daje::Plugin::Authorities::Authorities](https://metacpan.org/pod/Daje%3A%3APlugin%3A%3AAuthorities%3A%3AAuthorities) 
+
 [Daje::Plugin::Authorities::Helpers](https://metacpan.org/pod/Daje%3A%3APlugin%3A%3AAuthorities%3A%3AHelpers) 
 
 [Daje::Plugin::Authorities::Routes](https://metacpan.org/pod/Daje%3A%3APlugin%3A%3AAuthorities%3A%3ARoutes) 
@@ -26,15 +28,15 @@ Daje::Plugin::Authorities is a Mojolicious plugin.
 Daje::Plugin::Authorities inherits all methods from
 Mojolicious::Plugin and implements the following new ones.
 
+# Mojolicious
+
+     $self->plugin('Authorities');
+
 # register
 
     $plugin->register(Mojolicious->new);
 
 Register plugin in [Mojolicious](https://metacpan.org/pod/Mojolicious) application.
-
-# Mojolicious
-
-     $self->plugin('Authorities');
 
 # Mojolicious::Lite
 
