@@ -66,6 +66,10 @@ sub create_admin($self) {
         db => $self->db
     )->load_all_authorities_plugin();
 
+    my $length = scalar @{$plugins};
+    for(my $i = 0; $i < $length; $i++) {
+
+    }
 
 }
 1;
