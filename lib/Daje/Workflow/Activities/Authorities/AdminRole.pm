@@ -42,6 +42,8 @@ use v5.42;
 # janeskil1525 E<lt>janeskil1525@gmail.com
 #
 
+use Daje::Database::Model::AuthoritiesRole;
+use Daje::Database::View::vAuthoritiesPluginList;
 
 sub create_admin($self) {
     $self->model->insert_history(
@@ -49,6 +51,21 @@ sub create_admin($self) {
         "Daje::Workflow::Activities::Authorities::AdminRole::create_admin",
         1
     );
+    my $data = $self->context->{context}->{payload};
+    $data->{workflow_fkey} = $self->context->{context}->{workflow}->{workflow_fkey};
+
+    my $authorities_role_pkey = Daje::Database::Model::AuthoritiesRole->new(
+        db => $self->db
+    )->insert({
+        name                      => 'Administrator',
+        authorities_workflow_fkey => $data->{workflow_fkey},
+        standard                  => 1
+    });
+
+    my $plugins = Daje::Database::View::vAuthoritiesPluginList->new(
+        db => $self->db
+    )->load_all_authorities_plugin();
+
 
 }
 1;
