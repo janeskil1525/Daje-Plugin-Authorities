@@ -9,7 +9,7 @@ use Mojo::Pg;
 
 use feature 'say';
 use feature 'signatures';
-use Daje::Workflow::Activities::Authorities::AdminRole;;
+use Daje::Workflow::Activities::Authorities::Standard::AdminRole;;
 use Daje::Workflow::Errors::Error;
 use Daje::Workflow::Database::Model;
 use namespace::clean -except => [qw/_options_data _options_config/];
@@ -22,9 +22,13 @@ sub create_admin_role() {
 
     try {
         my $model = Daje::Workflow::Database::Model->new(db => $pg->db);
+    $model->workflow_pkey(5);
+        my $context->{context}->{payload}->{tools_projects_fkey} = 5;
+        $context->{context}->{workflow}->{workflow_fkey} = 5;
+        $context->{context}->{companies_fkey} = 1;
+        $context->{context}->{users_fkey} = 4;
 
-        my $context->{context}->{payload}->{tools_projects_fkey} = 1;
-        my $role = Daje::Workflow::Activities::Authorities::AdminRole->new(
+        my $role = Daje::Workflow::Activities::Authorities::Standard::AdminRole->new(
             db      => $pg->db,
             context => $context,
             model   => $model,
