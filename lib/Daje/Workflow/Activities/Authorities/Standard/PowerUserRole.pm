@@ -46,10 +46,10 @@ use Daje::Database::View::vAuthoritiesPluginList;
 use Daje::Database::View::vAuthoritiesFunction;
 use Daje::Database::View::vAuthoritiesPermissionsList;
 
-sub create_power_user($self) {
+sub create_power_role($self) {
     $self->model->insert_history(
         "Power user role for new client",
-        "Daje::Workflow::Activities::Authorities::Standard::PowerUserRole::create_power_user",
+        "Daje::Workflow::Activities::Authorities::Standard::PowerUserRole::create_power_role",
         1
     );
 

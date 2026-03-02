@@ -46,6 +46,7 @@ use v5.42;
 use Daje::Database::View::vAuthoritiesPluginList;
 use Daje::Database::View::vAuthoritiesFunction;
 use Daje::Database::View::vAuthoritiesPermissionsList;
+use Daje::Database::Model::UsersUsers;
 
 sub create_admin($self) {
     $self->model->insert_history(
@@ -97,5 +98,9 @@ sub create_admin($self) {
             }
         }
     }
+    Daje::Database::Model::UsersUsers->new(db => $self->db)->update({
+        users_users_pkey       => $self->context->{context}->{users_fkey},
+        authorities_role_fkey => $authorities_role_pkey,
+    });
 }
 1;

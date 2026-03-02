@@ -47,14 +47,14 @@ use Daje::Database::View::vAuthoritiesPluginList;
 use Daje::Database::View::vAuthoritiesFunction;
 use Daje::Database::View::vAuthoritiesPermissionsList;
 
-sub create_normal_user($self) {
+sub create_normal_role($self) {
     $self->model->insert_history(
         "User role for new client",
-        "Daje::Workflow::Activities::Authorities::Standard::UserRole::create_normal_user",
+        "Daje::Workflow::Activities::Authorities::Standard::UserRole::create_normal_role",
         1
     );
 
-    my $authorities_role_pkey = $self->create_role('User', 1);
+    my $authorities_role_pkey = $self->createRole('User', 1);
     my $plugins = Daje::Database::View::vAuthoritiesPluginList->new(
         db => $self->db
     )->load_user_plugins()->{data};
