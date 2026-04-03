@@ -67,7 +67,7 @@ use Daje::Plugin::Authorities::Authorities;
 use Daje::Plugin::Authorities::Languages;
 use  Daje::Database::Migrator;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub register ($self, $app, $config) {
     $app->log->debug("Daje::Plugin::Authorities::register start");
