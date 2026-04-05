@@ -65,9 +65,10 @@ use Daje::Plugin::Authorities::Routes;
 use Daje::Plugin::Authorities::Helpers;
 use Daje::Plugin::Authorities::Authorities;
 use Daje::Plugin::Authorities::Languages;
+use Daje::Helper::Authorities::Role;
 use  Daje::Database::Migrator;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub register ($self, $app, $config) {
     $app->log->debug("Daje::Plugin::Authorities::register start");
@@ -93,6 +94,12 @@ sub register ($self, $app, $config) {
         db => $app->pg->db
     )->language();
 
+
+    $app->helper(
+        helper_authorities => sub {
+            state  $helper_authoritiesn = Daje::Helper::Authorities::Role->new(db => shift->pg->db)
+        });
+    $r->get('v1/load_authorities_role_full/')->to('AuthoritiesRole#load_authorities_role_full');
 
     $app->log->debug("Daje::Plugin::Authorities::register ends");
 }
