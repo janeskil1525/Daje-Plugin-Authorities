@@ -99,7 +99,7 @@ sub create_admin($self) {
         }
     }
     Daje::Database::Model::CompaniesUsers->new(db => $self->db)->update({
-        users_users_pkey            => $self->context->{context}->{users_fkey},
+        users_users_fkey            => $self->context->{context}->{users_fkey},
         companies_companies_fkey    => $self->context->{context}->{companies_fkey},
         authorities_role_fkey       => $authorities_role_pkey,
     });
