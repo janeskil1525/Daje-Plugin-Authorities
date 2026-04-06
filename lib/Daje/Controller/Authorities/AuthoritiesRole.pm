@@ -43,8 +43,10 @@ use v5.42;
 
 our $VERSION = '0.01';
 
+use Data::Dumper;
+
 sub load_authorities_role_full($self) {
-    $self->app->log->debug('Daje::Controller::Super::AuthoritiesRole::load_authorities__fkey ');
+    $self->app->log->debug('Daje::Controller::Super::AuthoritiesRole::load_authorities_role_full ');
     $self->render_later;
     my ($companies_pkey, $users_pkey) = $self->jwt->companies_users_pkey(
         $self->req->headers->header('X-Token-Check')
@@ -52,10 +54,11 @@ sub load_authorities_role_full($self) {
 
     $self->app->log->debug($self->req->headers->header('X-Token-Check'));
     # my $setting = $self->param('setting');
-    $self->helper_authorities->load_authorities_role_pkey_p($companies_pkey, $users_pkey, $pkey)->then(sub($result) {
-        $self->render(text => $result->{data});
+    $self->helper_authorities->load_authorities_role_full_p($companies_pkey, $users_pkey)->then(sub($result) {
+        $self->app->log->debug('Daje::Controller::Super::AuthoritiesRole::load_authorities_role_full ' . Dumper($result));
+        $self->render(text => $result->{data}->{json_build_object});
     })->catch(sub($err) {
-        $self->app->log->error('Daje::Controller::AuthoritiesRole::load_authorities_role_pkey ' . $err);
+        $self->app->log->error('Daje::Controller::AuthoritiesRole::load_authorities_role_full ' . $err);
         $self->render
     });
 }

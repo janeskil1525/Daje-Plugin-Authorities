@@ -99,7 +99,8 @@ sub register ($self, $app, $config) {
         helper_authorities => sub {
             state  $helper_authoritiesn = Daje::Helper::Authorities::Role->new(db => shift->pg->db)
         });
-    $r->get('v1/load_authorities_role_full/')->to('AuthoritiesRole#load_authorities_role_full');
+
+    $app->auth->get('v1/load_authorities_role_full/')->to('AuthoritiesRole#load_authorities_role_full');
 
     $app->log->debug("Daje::Plugin::Authorities::register ends");
 }

@@ -43,7 +43,7 @@ use v5.42;
 
 has 'db';
 
-async sub load_authorities_role_full($self, $companies_fkey, $users_fkey) {
+async sub load_authorities_role_full_p($self, $companies_fkey, $users_fkey) {
 
     my $stmt = qq{
         SELECT json_build_object(
