@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', credentialsId: "${GIT_PWD}", url: "https://github.com/janeskil1525/${PROJECT}.git"
+                git branch: 'main', credentialsId: "${env.GIT_PWD}", url: "https://github.com/janeskil1525/${PROJECT}.git"
             }
         }
         stage('Verify perl') {
