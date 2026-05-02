@@ -57,11 +57,11 @@ sub create_power_role($self) {
 
     my $plugins = Daje::Database::View::vAuthoritiesPluginList->new(
         db => $self->db
-    )->load_user_plugins()->{data};
+    )->load_user_plugins(0,0)->{data};
 
     my $permissions = Daje::Database::View::vAuthoritiesPermissionsList->new(
         db => $self->db
-    )->load_all_authorities_permissions()->{data};
+    )->load_all_authorities_permissions(0,0)->{data};
 
     my $length = scalar @{$plugins};
     for(my $i = 0; $i < $length; $i++) {
@@ -72,7 +72,7 @@ sub create_power_role($self) {
         );
         my $functions = Daje::Database::View::vAuthoritiesFunction->new(
             db => $self->db
-        )->load_authorities_plugin_fkey(
+        )->load_authorities_plugin_fkey(0,0,
             @{$plugins}[$i]->{authorities_plugin_pkey}
         )->{data};
 
